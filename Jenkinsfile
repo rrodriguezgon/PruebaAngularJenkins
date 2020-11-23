@@ -1,15 +1,7 @@
-pipeline{
-    agent any
-    stages {
-        stage('Checkout-git'){
-            steps{
-                git branch: 'main', poll: true, url: 'https://github.com/rrodriguezgon/PruebaAngularJenkins.git'
-            }
-        } 
-        stage('test'){
-            steps {
-                echo 'Testing...'
-            }
-        }
-    }
-}
+library 'global-alm-pipeline-library'
+npmPipeline (
+sonar: [sonarInstanceName: 'GLOBAL'], sonarProperties: [
+        "sonar.projectKey": 'sgt:sgt:architecturelifecycle:test-alm-npm']],
+kiuwan: [kiuwanProperties: ['softwareName':'SGT:SGT:Test_ALMMulticloud:test','change-request': 'TCU-234']],
+kiuwanInsight: [credentialsId: 'KIUWAN', softwareName: 'SGT:SGT:Test_ALMMulticloud:test_composition'],
+)
