@@ -3,7 +3,7 @@ pipeline{
     stages {
         stage('Checkout-git'){
             steps{
-                git poll: true, url: 'https://github.com/rrodriguezgon/PruebaAngularJenkins.git'
+                git branch: 'main', poll: true, url: 'https://github.com/rrodriguezgon/PruebaAngularJenkins.git'
             }
         } 
         stage('test'){
